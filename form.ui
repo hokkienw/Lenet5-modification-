@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1239</width>
+    <width>1218</width>
     <height>583</height>
    </rect>
   </property>
@@ -61,7 +61,7 @@ color:white;
 border-radius: 10px;
 }</string>
    </property>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="datasetBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -75,16 +75,16 @@ border-radius: 10px;
     </property>
     <item>
      <property name="text">
-      <string>CIFAR10 Обучить распозновать 10 класов картинок</string>
+      <string>CIFAR10</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string> MNIST обучить распознавать рукописные цифры</string>
+      <string>MNIST</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="netBox">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -95,36 +95,36 @@ border-radius: 10px;
     </property>
     <item>
      <property name="text">
-      <string>Модификация LeNet5 2 сверточных слоя</string>
+      <string>LeNet5</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>CifarNet 3 сверточных слоя (увеличено количество фильтров)</string>
+      <string>LeNet6</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_5">
+   <widget class="QComboBox" name="poolingBox">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>290</x>
       <y>170</y>
-      <width>161</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Max pooling</string>
+      <string>Max</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Average pooling</string>
+      <string>Average</string>
      </property>
     </item>
    </widget>
-   <widget class="QSpinBox" name="spinBox">
+   <widget class="QSpinBox" name="epochSpin">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -137,7 +137,7 @@ border-radius: 10px;
      <number>100000</number>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBox_2">
+   <widget class="QSpinBox" name="batchSpin">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -150,7 +150,7 @@ border-radius: 10px;
      <number>200</number>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QDoubleSpinBox" name="lerningRateSpin">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -215,100 +215,100 @@ border-radius: 10px;
      </rect>
     </property>
     <property name="text">
-     <string>    Выберете датасет для обучениия.</string>
+     <string>    Выберете датасет для обучениия</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_10">
+   <widget class="QComboBox" name="activationBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>110</x>
       <y>170</y>
-      <width>201</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Функция активации ReLu</string>
+      <string>ReLu</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Функция активации Sigmoid</string>
+      <string>Sigmoid</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Функция активации Tanh</string>
+      <string>Tanh</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_11">
+   <widget class="QComboBox" name="convBox">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>290</x>
       <y>220</y>
-      <width>161</width>
+      <width>91</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Свертка 5x5</string>
+      <string>5x5</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>2x свертки 3x3</string>
+      <string>2x 3x3</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_12">
+   <widget class="QComboBox" name="batchBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>120</x>
       <y>220</y>
-      <width>201</width>
+      <width>81</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>С батч нормализацией</string>
+      <string>Да</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Без батч нормализации</string>
+      <string>Нет</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_13">
+   <widget class="QComboBox" name="optimazerBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>210</x>
       <y>350</y>
-      <width>371</width>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Оптимизатор Adam</string>
+      <string>Adam</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Оптимизатор SGD</string>
+      <string>SGD</string>
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_14">
+   <widget class="QComboBox" name="gpuBox">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>300</x>
       <y>300</y>
-      <width>161</width>
+      <width>81</width>
       <height>41</height>
      </rect>
     </property>
@@ -323,23 +323,23 @@ border-radius: 10px;
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="comboBox_15">
+   <widget class="QComboBox" name="lossBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>90</x>
       <y>300</y>
-      <width>201</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Loss функция Cross entropy</string>
+      <string>Cross Entropy</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Loss функция MSE</string>
+      <string>MSE</string>
      </property>
     </item>
    </widget>
@@ -360,9 +360,9 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>39</x>
-      <y>511</y>
+      <y>491</y>
       <width>321</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
@@ -379,7 +379,7 @@ border-radius: 10px;
      </rect>
     </property>
     <property name="text">
-     <string>   Настройки нейросети</string>
+     <string>   Настройки нейросети:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -392,14 +392,109 @@ border-radius: 10px;
      </rect>
     </property>
     <property name="text">
-     <string>   Настройки обучения</string>
+     <string>   Настройки обучения:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Функция 
+ активации:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> С батч-
+ нормализацией</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>170</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Pooling:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>220</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Свертка:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>300</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Запустить
+ на:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>300</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Loss 
+ функция:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>  Оптимизатор:</string>
     </property>
    </widget>
   </widget>
   <widget class="QWidget" name="widget_3" native="true">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>410</x>
      <y>10</y>
      <width>391</width>
      <height>561</height>
@@ -441,7 +536,7 @@ color:white;
 border-radius: 10px;
 }</string>
    </property>
-   <widget class="QWidget" name="widget_4" native="true">
+   <widget class="QWidget" name="accuracyWidget" native="true">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -455,7 +550,7 @@ border-radius: 10px;
 border-radius: 20px;</string>
     </property>
    </widget>
-   <widget class="QWidget" name="widget_5" native="true">
+   <widget class="QWidget" name="lossWidget" native="true">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -499,7 +594,7 @@ border-radius: 20px;</string>
   <widget class="QWidget" name="widget_2" native="true">
    <property name="geometry">
     <rect>
-     <x>820</x>
+     <x>810</x>
      <y>10</y>
      <width>401</width>
      <height>561</height>
@@ -566,7 +661,7 @@ background-color:white;
 border-radius: 20px;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_10">
+   <widget class="QLabel" name="resaultLabel">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -631,7 +726,7 @@ border-radius: 20px;</string>
      <string>Загрузить картинку</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="GoButton">
+   <widget class="QPushButton" name="goButton">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -647,13 +742,13 @@ border-radius: 20px;</string>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>doubleSpinBox</tabstop>
-  <tabstop>spinBox_2</tabstop>
+  <tabstop>lerningRateSpin</tabstop>
+  <tabstop>batchSpin</tabstop>
   <tabstop>paint</tabstop>
-  <tabstop>spinBox</tabstop>
-  <tabstop>comboBox_5</tabstop>
-  <tabstop>comboBox_2</tabstop>
-  <tabstop>comboBox</tabstop>
+  <tabstop>epochSpin</tabstop>
+  <tabstop>poolingBox</tabstop>
+  <tabstop>netBox</tabstop>
+  <tabstop>datasetBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
