@@ -310,7 +310,7 @@ class Ui_Widget(object):
         self.goButton = QtWidgets.QPushButton(self.widget_2)
         self.goButton.setGeometry(QtCore.QRect(230, 160, 151, 81))
         self.goButton.setObjectName("goButton")
-        self.goButton.setEnabled(False)
+        # self.goButton.setEnabled(False)
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)

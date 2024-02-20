@@ -10,13 +10,13 @@ from parse_data import Parse
 from trainer_tester import Treiner_Tester
 
 class Model():
-  def __init__(self, activation='tanh',
-                 pooling='avg',
+  def __init__(self, activation='Tanh',
+                 pooling='Average',
                  conv_size=5,
                  use_batch_norm=False,
                 net = "LeNet6", number_of_epochs=1,
                 parse_data = "MNIST",
-                loss='Cross', gpu=True,
+                loss='Cross Entropy', gpu="GPU",
                 batch_s=100, opt='Adam',
                 lerning_rate=3.0e-3):
     super(Model, self).__init__()

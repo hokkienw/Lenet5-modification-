@@ -47,6 +47,7 @@ class LeNet6(torch.nn.Module):
     self.fc3   = torch.nn.Linear(64, 10)
 
   def forward(self, x):
+    # print(x.shape)
     x = self.batch0(x)
     x = self.conv1(x)
     x = self.act1(x)
@@ -62,7 +63,7 @@ class LeNet6(torch.nn.Module):
     x = self.act3(x)
     x = self.batch3(x)
 
-    x = x.view(x.size(0), x.size(1)*x.size(2)*x.size(3))
+    x = x.reshape(x.size(0), -1)
 
     x = self.fc1(x)
     x = self.act4(x)

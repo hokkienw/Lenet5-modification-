@@ -2,8 +2,8 @@
 import torch
 
 class LeNet5(torch.nn.Module):
-  def __init__(self, activation='tanh',
-                 pooling='avg',
+  def __init__(self, activation='Tanh',
+                 pooling='Average',
                  conv_size=5,
                  use_batch_norm=False,
                  padd=0,in_chan=1):
