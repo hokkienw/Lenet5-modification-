@@ -10,15 +10,11 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import torch
-from torchvision import transforms
-import qimage2ndarray
-# from PIL import Image
-# from PIL.ImageQt import ImageQt
 import numpy as np
 from model import Model
 import ssl
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
-from PyQt5.QtGui import QPen, QBrush, QImage, QPixmap, QFont, QPainter
+from PyQt5.QtGui import QPen, QBrush, QFont
 from PyQt5.QtWidgets import QGraphicsPixmapItem, QFileDialog
 from PyQt5.QtCore import Qt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -118,7 +114,7 @@ class Ui_Widget(object):
         self.epochSpin.setObjectName("epochSpin")
         self.batchSpin = QtWidgets.QSpinBox(self.widget)
         self.batchSpin.setGeometry(QtCore.QRect(200, 430, 181, 22))
-        self.batchSpin.setMinimum(1)
+        self.batchSpin.setMinimum(2)
         self.batchSpin.setMaximum(200)
         self.batchSpin.setObjectName("batchSpin")
         self.lerningRateSpin = QtWidgets.QDoubleSpinBox(self.widget)
@@ -245,17 +241,9 @@ class Ui_Widget(object):
         self.accuracyWidget.setStyleSheet("background-color:white;\n"
 "border-radius: 20px;")
         self.accuracyWidget.setObjectName("accuracyWidget")
-#         self.lossWidget = QtWidgets.QWidget(self.widget_3)
-#         self.lossWidget.setGeometry(QtCore.QRect(20, 330, 351, 221))
-#         self.lossWidget.setStyleSheet("background-color:white;\n"
-# "border-radius: 20px;")
-#         self.lossWidget.setObjectName("lossWidget")
         self.label_8 = QtWidgets.QLabel(self.widget_3)
         self.label_8.setGeometry(QtCore.QRect(20, 10, 351, 21))
         self.label_8.setObjectName("label_8")
-        # self.label_9 = QtWidgets.QLabel(self.widget_3)
-        # self.label_9.setGeometry(QtCore.QRect(20, 300, 351, 21))
-        # self.label_9.setObjectName("label_9")
         self.widget_2 = QtWidgets.QWidget(Widget)
         self.widget_2.setGeometry(QtCore.QRect(810, 10, 401, 561))
         self.widget_2.setStyleSheet("QWidget{\n"
@@ -299,15 +287,14 @@ class Ui_Widget(object):
         self.paint.setObjectName("paint")
         self.paint_scene = PaintScene()
         self.paint.setScene(self.paint_scene)
-        # self.paint.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        # self.paint.setFixedSize(200, 200)
         self.resaultLabel = QtWidgets.QLabel(self.widget_2)
         self.resaultLabel.setGeometry(QtCore.QRect(20, 310, 361, 241))
         self.resaultLabel.setText("")
         self.resaultLabel.setObjectName("resaultLabel")
         font = QFont()
-        font.setPointSize(18)
+        font.setPointSize(32)
         self.resaultLabel.setFont(font)
+        self.resaultLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.label_11 = QtWidgets.QLabel(self.widget_2)
         self.label_11.setGeometry(QtCore.QRect(20, 270, 361, 21))
         self.label_11.setObjectName("label_11")
@@ -323,7 +310,7 @@ class Ui_Widget(object):
         self.goButton = QtWidgets.QPushButton(self.widget_2)
         self.goButton.setGeometry(QtCore.QRect(230, 160, 151, 81))
         self.goButton.setObjectName("goButton")
-        # self.goButton.setEnabled(False)
+        self.goButton.setEnabled(False)
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
@@ -337,11 +324,6 @@ class Ui_Widget(object):
         self.accuracy_canvas = FigureCanvas(Figure())
         self.accuracy_canvas.setGeometry(QtCore.QRect(0, 0, 350, 500))
         self.accuracy_canvas.setParent(self.accuracyWidget)
-
-        # Add a FigureCanvas for the loss plot
-        # self.loss_canvas = FigureCanvas(Figure())
-        # self.loss_canvas.setGeometry(QtCore.QRect(20, 330, 341, 211))
-        # self.loss_canvas.setParent(self.lossWidget)
 
         self.learnButton.clicked.connect(self.on_learn_click)
         self.clearButton.clicked.connect(self.on_clear_click)
@@ -372,20 +354,6 @@ class Ui_Widget(object):
         ax_loss.set_ylabel('Loss')
 
         self.accuracy_canvas.draw()
-        # self.loss_canvas.figure.clear()
-
-        # ax_accuracy = self.accuracy_canvas.figure.add_subplot(111)
-        # ax_accuracy.plot(accuracies)
-        # ax_accuracy.set_xlabel('Epochs')
-        # ax_accuracy.set_ylabel('Accuracy')
-
-        # ax_loss = self.loss_canvas.figure.add_subplot(112)
-        # ax_loss.plot(losses)
-        # ax_loss.set_xlabel('Epochs')
-        # ax_loss.set_ylabel('Loss')
-
-        # self.loss_canvas.draw()
-        # self.accuracy_canvas.draw()
         self.goButton.setEnabled(True)
 
 
@@ -431,7 +399,6 @@ class Ui_Widget(object):
 " функция:"))
         self.label_19.setText(_translate("Widget", "  Оптимизатор:"))
         self.label_8.setText(_translate("Widget", "    Изменение точности/loss от эпох"))
-        # self.label_9.setText(_translate("Widget", "    Изменение  Loss функции от эпох"))
         self.label_11.setText(_translate("Widget", "  Результат:"))
         self.label_12.setText(_translate("Widget", " Нарисовать или загрузить картинку:"))
         self.clearButton.setText(_translate("Widget", "Очистить"))
@@ -443,64 +410,29 @@ class Ui_Widget(object):
     
     def on_go_click(self):
         self.img = self.paint.grab()
+        prediction = ""
         if self.datasetBox.currentText() == "MNIST":
                 self.img = self.img.scaled(28, 28).toImage()
-                self.img = qimage2ndarray.rgb_view(self.img)
-                # self.img =self.img.mean(axis=-1)
+                image_array = self.img.convertToFormat(QtGui.QImage.Format_Grayscale8).bits().asstring(self.img.width() * self.img.height())
+                torch_array = torch.tensor(list(image_array), dtype=torch.uint8).view(self.img.height(), self.img.width(), 1)
+                torch_array = torch_array.unsqueeze(0).unsqueeze(0)
+                torch_array = torch_array.squeeze(4)
+                self.img = torch_array.float()
+                prediction = str(self.model.ManTest(self.img))
+
         else:
-             self.img = self.img.scaled(32, 32).toImage()
-             self.img = qimage2ndarray.rgb_view(self.img)
-        transform = transforms.ToTensor()
-        self.img = transform(self.img.copy())
-        print(self.img[0].shape())
-        self.resaultLabel.setText(self.model.ManTest(self.img))
+                self.img = self.img.scaled(32, 32).toImage()
+                image_array = self.img.convertToFormat(QtGui.QImage.Format_RGB32).bits().asstring(self.img.width() * self.img.height() * 3)
+                tensor_image = torch.tensor(list(image_array), dtype=torch.uint8).view(self.img.height(), self.img.width(), 3)
+                tensor_image = tensor_image.permute(2, 0, 1)
+                tensor_image = tensor_image.unsqueeze(0)
+                tensor_image = tensor_image.float()
+                tensor_image /= 255
+                self.img = tensor_image
+                prediction = self.model.ManTest(self.img)
+        self.resaultLabel.clear()
+        self.resaultLabel.setText(prediction)
 
-#     def on_go_click(self):
-#           pixmap = self.paint.grabWindow(0, self._x, self._y, self._width, self._height)
-#           print(pixmap)
-#         self.pixmap2 = self.paint.grab(self.paint.sceneRect().toRect())
-#         print(self.pixmap2)
-#         # Check the current dataset
-#         if self.datasetBox.currentText() == "MNIST":
-#                 self.img = self.pixmap2.scaled(28, 28).toImage()
-#                 width = self.img.width()
-#                 height = self.img.height()
-
-#                 # Convert QImage to numpy array
-#                 buffer = self.img.bits()
-#                 print(buffer)
-#                 # buffer.setsize(self.img.byteCount())
-#                 # numpy_array = np.frombuffer(buffer, dtype=np.uint8).reshape((height, width, 4))
-
-#                 # # Convert numpy array to torch.FloatTensor
-#                 # float_tensor = torch.from_numpy(numpy_array).float()
-#                 # print(float_tensor)
-#                 # self.img = ImageQt(self.img)
-#                 # transform = transforms.ToTensor()
-#                 # self.img = transform(self.img)
-
-#         else:
-#                 self.img = self.pixmap2.scaled(32, 32).toImage()
-#                 # self.img = Image.fromqimage(self.img)
-#                 # transform = transforms.ToTensor()
-#                 # self.img = transform(self.img)
-#         # self.model.ManTest(self.img)
-                
-
-#     def weight_img(self, img):
-#         width, height = img.width(), img.height()
-#         img = img.scaled(self.scale, self.scale)
-#         if
-#         img = img.convertToFormat(QImage.Format_Grayscale8)
-#         weight = []
-
-#         for i in range(self.scale):
-#                 for j in range(self.scale):
-#                         pixel_value = img.pixelColor(i, j).black()
-#                         normalized_value = pixel_value / 255.0
-#                         weight.append(normalized_value)
-
-#         return weight
     
     def on_load_button_click(self):
         msgBox = QtWidgets.QMessageBox()
