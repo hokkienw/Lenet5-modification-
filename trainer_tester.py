@@ -15,7 +15,7 @@ class Treiner_Tester():
     self.x_train = parse_instance.x_train
     self.y_train = parse_instance.y_train
     self.x_test = parse_instance.x_test
-    print(self.x_test.shape)
+    # print(self.x_test.shape)
     self.y_test = parse_instance.y_test
     self.test_accuracy_history = []
     self.test_loss_history = []
@@ -70,7 +70,7 @@ class Treiner_Tester():
       predicted_class = torch.argmax(test_preds, dim=1).item()
     else:
       pred_list =  ["airplane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
-      print(data.shape)
+      # print(data.shape)
       test_preds = self.net.forward(data)
       predicted_class_ind = torch.argmax(test_preds, dim=1).item()
       predicted_class = pred_list[predicted_class_ind]
