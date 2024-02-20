@@ -286,6 +286,7 @@ class Ui_Widget(object):
 "border-radius: 20px;")
         self.paint.setObjectName("paint")
         self.paint_scene = PaintScene()
+        self.paint_scene.setSceneRect(0, 0, 200, 200)
         self.paint.setScene(self.paint_scene)
         self.resaultLabel = QtWidgets.QLabel(self.widget_2)
         self.resaultLabel.setGeometry(QtCore.QRect(20, 310, 361, 241))

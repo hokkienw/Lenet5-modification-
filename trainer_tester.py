@@ -30,9 +30,9 @@ class Treiner_Tester():
       self.loss = torch.nn.MSELoss()
 
     if opt == 'Adam':
-      self.optimizer = torch.optim.Adam(net.parameters(), lr=lerning_rate)
+      self.optimizer = torch.optim.Adam(net.parameters(), lr=lerning_rate, weight_decay=1e-5)
     else:
-      self.optimizer = torch.optim.SGD(net.parameters(), lr=lerning_rate, momentum=0.9)
+      self.optimizer = torch.optim.SGD(net.parameters(), lr=lerning_rate, momentum=0.9, weight_decay=1e-5)
 
 
   def Train(self):
