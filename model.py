@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from lenet5 import LeNet5
 from lenet6 import LeNet6
+from resnet import ResNet
 from parse_data import Parse
 from trainer_tester import Treiner_Tester
 
@@ -30,8 +31,10 @@ class Model():
       self.in_chan = 3
     if net == "LeNet6":
       self.net_ = LeNet6(activation, pooling, self.padd + 1, self.in_chan)
-    else:
+    elif net == "LeNet5":
       self.net_ = LeNet5(activation, pooling, conv_size, use_batch_norm, self.padd, self.in_chan)
+    else:
+      self.net_ = ResNet(padd=(self.padd+ 1), in_chan=self.in_chan)
     self.trainer = Treiner_Tester(self.net_, number_of_epochs, self.parser, loss, gpu, batch_s, opt, lerning_rate, parse_data)
       
     
