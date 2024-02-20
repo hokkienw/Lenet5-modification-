@@ -407,6 +407,7 @@ class Ui_Widget(object):
 
     def on_clear_click(self):
          self.paint_scene.clear()
+         self.resaultLabel.setText("")
     
     def on_go_click(self):
         self.img = self.paint.grab()
@@ -430,7 +431,7 @@ class Ui_Widget(object):
                 tensor_image /= 255
                 self.img = tensor_image
                 prediction = self.model.ManTest(self.img)
-        self.resaultLabel.clear()
+
         self.resaultLabel.setText(prediction)
 
     

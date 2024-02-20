@@ -63,7 +63,7 @@ class LeNet6(torch.nn.Module):
     x = self.act3(x)
     x = self.batch3(x)
 
-    x = x.reshape(x.size(0), -1)
+    x = x.reshape(x.size(0), x.size(1)*x.size(2)*x.size(3))
 
     x = self.fc1(x)
     x = self.act4(x)

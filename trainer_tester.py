@@ -26,12 +26,12 @@ class Treiner_Tester():
     self.net = self.net.to(self.device)
     if loss == 'Cross Entropy':
       self.loss = torch.nn.CrossEntropyLoss()
-    elif loss == 'MSE':
+    else:
       self.loss = torch.nn.MSELoss()
 
     if opt == 'Adam':
       self.optimizer = torch.optim.Adam(net.parameters(), lr=lerning_rate)
-    elif opt == 'SGD':
+    else:
       self.optimizer = torch.optim.SGD(net.parameters(), lr=lerning_rate, momentum=0.9)
 
 
@@ -70,8 +70,7 @@ class Treiner_Tester():
       predicted_class = torch.argmax(test_preds, dim=1).item()
     else:
       pred_list =  ["airplane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
-      # print(data.shape)
-      test_preds = self.net.forward(data)
+      test_preds = self.net.forward(data) 
       predicted_class_ind = torch.argmax(test_preds, dim=1).item()
       predicted_class = pred_list[predicted_class_ind]
     return predicted_class
