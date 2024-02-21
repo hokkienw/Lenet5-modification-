@@ -51,6 +51,7 @@
 3. lenet5.py: Класс нейросети  LeNet5.
 4. lenet6.py: Класс нейросети  LeNet6.
 5. resnet.py: Класс нейросети  ResNet.
+6. trainer_testre.py Класс для обучения нейросетей.
 ## Зависимости
 - PyQt5
 - torch
